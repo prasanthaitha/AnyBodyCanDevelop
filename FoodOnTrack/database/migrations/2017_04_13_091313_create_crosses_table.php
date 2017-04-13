@@ -17,7 +17,7 @@ class CreateCrossesTable extends Migration
             Schema::enableForeignKeyConstraints();
             $table->integer('train_no');
             $table->string('stn_id');
-            $table->timestamps('time');
+            $table->time('time');
 
             $table->primary(['train_no', 'stn_id']);
 

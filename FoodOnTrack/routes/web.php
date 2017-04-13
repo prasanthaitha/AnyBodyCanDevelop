@@ -17,4 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/search','SearchController@search');
+
 Route::get('/home', 'HomeController@index');
+Route::get('/search/{stn_id}','SearchController@station');
+Route::get('/rest/{rest_id}','SearchController@restaur');
