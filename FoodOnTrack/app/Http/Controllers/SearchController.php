@@ -45,20 +45,25 @@ public function station($stn_id){
 
 
 public function restaur($rest_id)
-{
+ {
 
  $foos = DB::table('contains')
             ->join('restaurants', 'contains.rest_id', '=', 'contains.rest_id')
             ->join('foods', 'contains.dish_id', '=', 'foods.dish_id')->get();
   
+$a=0;
+$q=array(1,100,100);
+$r=array(1,100,100);
 
-  $foo=$foos->where('rest_id','=',$rest_id);
-  //return $foo;
-  return view('menu',compact('foo'));
+$foo=$foos->where('rest_id','=',$rest_id);
+return view('menu',compact('foo','a','q','r'));
+ }
 
 
 
-}
+
+
+
 
 
 
