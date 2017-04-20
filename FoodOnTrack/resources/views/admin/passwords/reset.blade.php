@@ -5,45 +5,25 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Admin Reset Password</div>
+
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-                        {{csrf_field()}}
-
-                        <div class="form-group{{ $errors->has('rest_name') ? ' has-error' : '' }}">
-                            <label for="rest_name" class="col-md-4 control-label">Restaurant Name</label>
-
-                            <div class="col-md-6">
-                                <input id="rest_name" type="text" class="form-control" name="rest_name" value="{{ old('rest_name') }}" required autofocus>
-
-                                @if ($errors->has('rest_name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('rest_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
                         </div>
+                    @endif
 
-                        <div class="form-group{{ $errors->has('station_name') ? ' has-error' : '' }}">
-                            <label for="station_name" class="col-md-4 control-label">Station Name</label>
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.password.request') }}">
+                        {{ csrf_field() }}
 
-                            <div class="col-md-6">
-                                <input id="station_name" type="text" class="form-control" name="station_name" value="{{ old('station_name') }}" required autofocus>
+                        <input type="hidden" name="token" value="{{ $token }}">
 
-                                @if ($errors->has('station_name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('station_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -67,18 +47,23 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Reset Password
                                 </button>
                             </div>
                         </div>

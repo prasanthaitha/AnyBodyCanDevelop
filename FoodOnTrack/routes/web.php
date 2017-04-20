@@ -24,3 +24,8 @@ Route::get('/search/{stn_id}','SearchController@station');
 Route::get('/rest/{rest_id}','SearchController@restaur');
 Route::post('/order','RestaurantController@book');
 Route::post('/booking','CustomerController@placed');
+
+
+
+
+

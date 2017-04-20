@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'admin/home';
 
     /**
      * Create a new controller instance.
@@ -35,18 +35,26 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest:admin', ['except' => 'logout']);
     }
 
     /**
-     * Get the needed authorization credentials from the request.
+     * Show the application's login form.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return \Illuminate\Http\Response
      */
-    protected function credentials(Request $request)
+    public function showLoginForm()
     {
-        // return $request->only($this->username(), 'password');
-        return ['email'=>$request->{$this->username()},'password'=>$request->password,'status'=>'1'];
+        return view('admin.login');
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 }
