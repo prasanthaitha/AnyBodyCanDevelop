@@ -26,6 +26,4 @@ Route::post('/order','RestaurantController@book');
 Route::post('/booking','CustomerController@placed');
 
 
-
-
-
+Route::post('/book','CustomerController@test');

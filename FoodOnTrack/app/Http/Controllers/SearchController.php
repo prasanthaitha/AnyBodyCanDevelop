@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use \App\Train;
 use \App\Cross;
@@ -27,7 +26,7 @@ public function search(Request $request)
     //return $tras;
     // $stas=Cross::where('train_no','=',$tras[0]->train_no)->orderBy('time','ASC')->get();  
     // $name=DB::->join('station','stas.stn_id','LIKE','station.stn_id')->get();
-    return view('trains',compact('tras'));
+    return view('trains',compact('tras') );
 
 }
 
