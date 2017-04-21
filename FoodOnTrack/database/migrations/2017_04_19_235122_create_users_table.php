@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('verifyToken');
             $table->integer('status')->default(0);
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamps()->default(\DB::raw('CURRENT_TIMESTAMP'));
 
             $table->foreign('rest_id')->references('rest_id')->on('restaurants')->onDelete('cascade');
 

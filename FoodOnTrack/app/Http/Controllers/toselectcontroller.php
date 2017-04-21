@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Food;
+use App\Contain;
 
-class toeditcontroller extends Controller
+class toselectcontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +17,13 @@ class toeditcontroller extends Controller
      */
     public function index()
     {
-        //
+        $dishes=Food::all();
+
+        $rid = Auth::user()->rest_id;
+
+        $contains = Contain::where('rest_id','=',$rid)->get();
+
+        return view('toselect.select',compact('dishes','contains'));
     }
 
     /**
